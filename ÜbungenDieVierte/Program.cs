@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 
 
+
+
+
 namespace ÜbungenDieVierte
 {
     class Program :User
@@ -11,7 +14,19 @@ namespace ÜbungenDieVierte
         {
 
 
-            User Logeed = new User();//inicia class User para usar metodos Logeed.NombreMethodo
+            User UserLi = new User();//inicia class User para usar metodos Logeed.NombreMethodo
+            List<User> UserList = new List<User>();
+
+            UserLi.userName = "3milio";
+            UserLi.paswordWord = "123";
+            UserLi.points = 8;
+            UserList.Add(UserLi);
+
+            UserLi.userName = "Valentina";
+            UserLi.paswordWord = "123";
+            UserLi.points = 9;
+            UserList.Add(UserLi);
+
 
             List<string> UserName = new List<string>();
             List<string> UserPass = new List<string>();
@@ -34,10 +49,62 @@ namespace ÜbungenDieVierte
 
                 if (login.Equals(false)) 
                 {
-                    Logeed.Chequin();
-                   // Console.WriteLine("Do yo have a user? Introduce yes or no");
-                    
+                    Console.WriteLine("Do yo have a user? Introduce yes or no");
+                    string answer = Console.ReadLine();
+
+                    if (answer.Equals("yes"))
+                    {
+                        Console.WriteLine("Introduce your Username");
+                        string username = Console.ReadLine();
+                        Console.WriteLine("Introduce your Passwort");
+                        string passwort = Console.ReadLine();
+
+
+                        for (int i = 0; i <= UserName.Count; i++)
+                        {
+                            if (username.Equals(UserName[i]))
+                            {
+                                count++;
+                                ActualUser = UserName[i];
+
+                            }
+                        }
+                        for (int i = 0; i <= UserPass.Count; i++)
+                        {
+                            if (passwort.Equals(UserPass[i]))
+                            {
+                                count++;
+
+                            }
+                        }
+
+                        if (count.Equals(2))
+                        {
+                            Console.WriteLine("Your loged in");
+                            login.Equals(true);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Your Username or Passwort is wrong");
+                        }
+
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Create your User now !!!");
+                        Console.WriteLine("Introduce your Username");
+                        string username = Console.ReadLine();
+                        UserName.Add(username);
+
+                        Console.WriteLine("Introduce your Passwort");
+                        string passwort = Console.ReadLine();
+                        UserPass.Add(passwort);
+
+                    }
                 }
+
+            }
 
                 if (count.Equals(2))
                 {
@@ -425,91 +492,11 @@ namespace ÜbungenDieVierte
        
     }
 
-    class User
-    {
-        int Id;
-        string nombre;
-        string passwort;
-        string points;
-
-
-        List<string> UserName = new List<string>();
-        List<string> UserPass = new List<string>();
-        List<string> HighScoreName = new List<string>();
-        List<int> HighScorePoint = new List<int>();
-
-        //HighScoreName.Add("Valentina");
-        //    HighScorePoint.Add(9);
-        //    HighScoreName.Add("Emilio");
-        //    HighScorePoint.Add(8);
-
-        //    UserName.Add("3milio");
-        //    UserPass.Add("123");
-        bool login = false;
-        int count = 0;
-        string ActualUser = "";
-
-        public  void Chequin()
-        {
-            Console.WriteLine("Do yo have a user? Introduce yes or no");
-            string answer = Console.ReadLine();
-
-            if (answer.Equals("yes"))
-            {
-                Console.WriteLine("Introduce your Username");
-                string username = Console.ReadLine();
-                Console.WriteLine("Introduce your Passwort");
-                string passwort = Console.ReadLine();
-
-
-                for (int i = 0; i <= UserName.Count; i++)
-                {
-                    if (username.Equals(UserName[i]))
-                    {
-                        count++;
-                        ActualUser = UserName[i];
-
-                    }
-                }
-                for (int i = 0; i <= UserPass.Count; i++)
-                {
-                    if (passwort.Equals(UserPass[i]))
-                    {
-                        count++;
-
-                    }
-                }
-
-                if (count.Equals(2))
-                {
-                    Console.WriteLine("Your loged in");
-                    login.Equals(true);
-                }
-                else
-                {
-                    Console.WriteLine("Your Username or Passwort is wrong");
-                }
-
-
-            }
-            else
-            {
-                Console.WriteLine("Create your User now !!!");
-                Console.WriteLine("Introduce your Username");
-                string username = Console.ReadLine();
-                UserName.Add(username);
-
-                Console.WriteLine("Introduce your Passwort");
-                string passwort = Console.ReadLine();
-                UserPass.Add(passwort);
-
-            }
-        }
-    }
+   
 
 
 
 
-}
+
 
 
